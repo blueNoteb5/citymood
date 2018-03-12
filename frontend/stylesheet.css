@@ -1,0 +1,130 @@
+.custom-navbar.navbar {
+  background-color: rgb(64,170,244)!important;
+  -webkit-box-shadow: -1px 4px 10px -3px rgba(0,0,0,0.55);
+  -moz-box-shadow: -1px 4px 10px -3px rgba(0,0,0,0.55);
+  box-shadow: -1px 4px 10px -3px rgba(0,0,0,0.55);
+}
+
+.closeButtonContainer button {
+  background-color: transparent;
+  border: none; cursor:
+  pointer; margin-left: 5px;
+  margin-top: 1px;
+  float: right;
+}
+
+.currentCityTrends {
+  padding: 3rem 0rem 0rem 5rem;
+}
+
+.currentCityRow {
+  padding-bottom: 1rem;
+  color: grey;
+}
+
+.current {
+  padding: 1rem 0;
+}
+
+.currentMoodContainer {
+  background-color: #e6e6e6;
+  border: 4px solid rgb(64,170,244);
+  border-radius: 15px;
+  margin-left: 15px;
+  text-align: center;
+  padding: 10px;
+}
+
+.currenthashtagsContainer {
+  background-color: #e6e6e6;
+  border: 4px solid rgb(64,170,244);
+  border-radius: 15px;
+  padding: 10px;
+  margin-left: 30px;
+}
+
+.currenthashtagsContainer h4 {
+  text-align: center;
+}
+
+.row {
+  width: 100%;
+}
+
+.currenthashtags {
+  margin-right: 0px !important;
+}
+
+.currenthashtags h5 {
+  text-align: left;
+  margin-left: 15px;
+  width: 100%;
+}
+
+#map-twitter {
+  padding: 10px;
+}
+
+.jumbotron {
+  background-color: rgb(174,173,176) !important;
+/*background-color: gray!important;*/
+  margin-bottom: 0 !important;
+}
+
+.jumbotron-text {
+  color: #FFF;
+}
+
+select.form-control {
+  width: 200px;
+  display: inline-block;
+}
+
+.btn {
+  vertical-align: top !important;
+  cursor: pointer;
+  border: 1px solid grey !important;
+}
+
+.form-group {
+  margin-top: 20px;
+}
+
+#chart_loc{
+	display: none;
+	position: absolute;
+	width: 300px;
+  height: 400px;
+	z-index: 1;
+}
+#chartdiv {
+  width: 100%;
+  height: 600px;
+  font-family: Verdana;
+  font-size: 11px;
+  background: #eee;
+}
+.ammapDescriptionWindow {
+  display:none;
+  max-width: 190px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 4px;
+  border: 2px solid rgba(255, 255, 255, 1);
+}
+.ammapDescriptionTitle {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.ammapDescriptionText {
+  max-height: 200px;
+  overflow: auto;
+}
+.ammapDescriptionText img, .ammapDescriptionText p {
+  max-width: 95%;
+}
+
+.hashtag h5 {
+  text-align: center;
+}

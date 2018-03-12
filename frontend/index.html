@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="stylesheet.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <title>#CityMood</title>
+    </head>
+
+    <body>
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark custom-navbar">
+        <a class="navbar-brand" href="index.html"><h3>#CityMood</h3></a>
+      </nav>
+
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="jumbotron-text">Find out what's trending in Your city!</h1>
+          <h4 class="jumbotron-text">Search by city or use the map to see the current mood!</h4>
+          <div class="city-dropdown">
+            <form id="search" action="redirect.html" method="GET">
+              <div class="form-group">
+                <select class="form-control" name="city">
+                  <option disabled selected value>Select</option>
+                  <option value="Calgary">Calgary</option>
+                  <option value="Edmonton">Edmonton</option>
+                  <option value="Hamilton">Hamilton</option>
+                  <option value="Kitchener">Kitchener</option>
+                  <option value="Montreal">Montreal</option>
+                  <option value="Ottawa">Ottawa</option>
+                  <option value="Toronto">Toronto</option>
+                  <option value="Vancouver">Vancouver</option>
+                  <option value="Winnipeg">Winnipeg</option>
+                </select>
+                <span><button type="submit" class="btn"> Get Mood</button></span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="map-twitter" class="row">
+        <div  class="col-md-9 col-sm-12">
+          <div id="chart_loc" style="height:3cm; width:200px; margin: 0% 10%;">
+            <div class="closeButtonContainer" style="border: none;">
+              <button onclick="document.getElementById('chart_loc').style.display='none'; document.getElementById('chartdiv').style.display='block'"><strong>x</strong></button>
+            </div>
+            <canvas id="myChart" height="70" width="200" style="background-color: rgba(64,170,244,0.35);" >
+            </canvas>
+          </div>
+          <div id="chartdiv"> </div>
+          <button style="display:none" onclick="clickObject('montreal')"></button>
+        </div>
+
+        <div id="live-tweets" class="col-md-3 col-sm-12" style="padding-left: 0px; padding-right: 0px;">
+          <div id="montreal">
+            <a class="twitter-timeline" href="https://twitter.com/hashtag/Montreal" data-widget-id="935282497499394048">#Montreal Tweets</a>
+          </div>
+          <div id="calgary" style="display: none;" >
+            <a class="twitter-timeline" href="https://twitter.com/hashtag/calgary" data-widget-id="935340726090633218">#Calgary Tweets</a>
+          </div>
+          <div id="toronto" style="display: none;">
+            <a class="twitter-timeline" href="https://twitter.com/hashtag/Toronto" data-widget-id="935294455061667841">#Toronto Tweets</a>
+          </div>
+          <div id="vancouver" style="display: none;">
+            <a class="twitter-timeline" href="https://twitter.com/hashtag/Vancouver" data-widget-id="935340578568536064">#Vancouver Tweets</a>
+          </div>
+          <div id="ottawa" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Ottawa" data-widget-id="938504820469755910">#Ottawa Tweets</a>
+          </div>
+          <div id="edmonton" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Edmonton" data-widget-id="938506080224759808">#Edmonton Tweets</a>
+          </div>
+          <div id="winnipeg" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Winnipeg" data-widget-id="938505583870861312">#Winnipeg Tweets</a>
+          </div>
+          <div id="hamilton" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Hamilton" data-widget-id="938512513590874112">#Hamilton Tweets</a>
+          </div>
+          <div id="kitchener" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Kitchener" data-widget-id="938512222480891905">#Kitchener Tweets</a>
+          </div>
+        </div>
+      </div>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <!-- Twitter live embed -->
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+          <!-- AMCHART SCRIPTS-->
+          <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+          <script src="https://www.amcharts.com/lib/3/maps/js/canadaLow.js"></script>
+          <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+          <script src="timer.js"></script>
+          <script src="javascript.js"></script>
+
+      </body>
+</html>

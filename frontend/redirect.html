@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="stylesheet.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <title>#CityMood</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark custom-navbar">
+        <a class="navbar-brand" href="index.html"><h3>#CityMood</h3></a>
+      </nav>
+
+
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="jumbotron-text">Find out what's trending in Your city!</h1>
+          <h4 class="jumbotron-text">Search by city!</h4>
+          <div class="city-dropdown">
+            <form action="redirect.html" method="GET">
+              <div class="form-group">
+                <select class="form-control" name="city">
+                  <option disabled selected value>Select</option>
+                  <option id="Calgary" value="Calgary">Calgary</option>
+                  <option id="Edmonton" value="Edmonton">Edmonton</option>
+                  <option id="Halifax" value="Halifax">Halifax</option>
+                  <option id="Montreal" value="Montreal">Montreal</option>
+                  <option id="Ottawa" value="Ottawa">Ottawa</option>
+                  <option id="Toronto" value="Toronto">Toronto</option>
+                  <option id="Vancouver" value="Vancouver">Vancouver</option>
+                  <option id="Winnipeg" value="Winnipeg">Winnipeg</option>
+                </select>
+                <span><button type="submit" class="btn"> Get Mood</button></span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="currentCityTrends" id="here" >
+        <div class="row currentCityRow">
+          <div class="col-md-12">
+            <h3>Currently in <span id="currentCity"><span>...</h3>
+          </div>
+        </div>
+
+        <div class="row current">
+          <div class="col-md-3 cmd-offset-2 currentMoodContainer">
+            <h4>Mood: </h4>
+            <div class="row" id="curmood"  >
+              <canvas id="currentMood" height="70" width="200" >
+            		</canvas>
+            </div>
+          </div>
+
+          <div class="col-md-3 currenthashtagsContainer">
+            <h4 id="trendingHashtag">Trending Hashtags:</h4>
+
+            <div class="row currenthashtags">
+              <div class="row" id="trendz" >
+                <div class="col-md-12" >
+                  <h5 class="hashtag">1. <span id="hashtag-1"></span> </h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12" >
+                  <h5 class="hashtag">2. <span id="hashtag-2"></span> </h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12" >
+                  <h5 class="hashtag">3. <span id="hashtag-3"></span> </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        <div class="row" style="margin: 20px 0px;">
+          <div class="row" style="margin-left: 10px;">
+            <h5 style="color:grey">Want to see how the week's mood in your city compares to others in Canada?</h5>
+          </div>
+          <div class="row" style="margin-left: 10px;">
+            <h5 style="color:grey">Select a city to compare yours to below:</h5>
+          </div>
+          <div class="row" style="margin-left: 10px;">
+            <select name="cities" class="form-control" onchange="compareMood(this.options[this.selectedIndex].value)">
+              <option disabled selected value>Select</option>
+              <option value="Calgary">Calgary</option>
+              <option value="Edmonton">Edmonton</option>
+              <option value="Hamilton">Hamilton</option>
+              <option value="Kitchener">Kitchener</option>
+              <option value="Montreal">Montreal</option>
+              <option value="Ottawa">Ottawa</option>
+              <option value="Toronto">Toronto</option>
+              <option value="Vancouver">Vancouver</option>
+              <option value="Winnipeg">Winnipeg</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 50px;">
+        <div class="col-md-8 col-sm-12">
+          <div id="chart_loc" style="padding-right:20px; width:100%; heigh: 100%; display: block;">
+            <canvas id="myChart" height="300" width="500" style="background-color: lightgrey; margin-left: auto; margin-right: auto;border-radius: 15px;" >
+            </canvas>
+          </div>
+        </div>
+
+        <div id="live-tweets" class="col-md-4 col-sm-12">
+          <div id="Montreal-red" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Montreal" data-widget-id="935613029961564160">#Montreal Tweets</a>
+          </div>
+          <div id="Toronto-red" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Toronto" data-widget-id="935616245247987712">#Toronto Tweets</a>
+          </div>
+          <div id="Vancouver-red" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Vancouver" data-widget-id="935616593878552576" style="display: none;">#Vancouver Tweets</a>
+          </div>
+          <div id="Calgary-red" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Calgary" data-widget-id="935617071370686464" style="display: none;">#Calgary Tweets</a>
+          </div>
+          <div id="Ottawa-red" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Ottawa" data-widget-id="938510433329270784">#Ottawa Tweets</a>
+          </div>
+          <div id="Edmonton-red" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Edmonton" data-widget-id="938510211760959488">#Edmonton Tweets</a>
+          </div>
+          <div id="Winnipeg-red" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Winnipeg" data-widget-id="938510642608332801">#Winnipeg Tweets</a>
+          </div>
+          <div id="Hamilton-red" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Hamilton" data-widget-id="938512761172131840">#Hamilton Tweets</a>
+          </div>
+          <div id="Kitchener-red" style="display: none;">
+            <a class="twitter-timeline"  href="https://twitter.com/hashtag/Kitchener" data-widget-id="938511107970469888">#Kitchener Tweets</a>
+          </div>
+        </div>
+        <div class="row" style="padding-bottom:1cm"></div>
+      </div>
+  </div>
+
+
+
+
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS, then AJAX -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+      <!-- Twitter live embed -->
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+        <!-- AMCHART SCRIPTS-->
+        <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+        <script src="https://www.amcharts.com/lib/3/maps/js/canadaLow.js"></script>
+        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+        <script src="javascript.js"></script>
+
+
+
+  </body>
+</html>
